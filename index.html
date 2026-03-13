@@ -58,37 +58,14 @@ h2{
 
 <div class="card">
     <h1>我们一起锻炼吧</h1>
-    <button>联系我</button>
+    <button>我们直接锻炼吧</button>
 </div>
 
 <h2>养生指南图片</h2>
 
 <div id="content">
-    <!-- 图片会通过 JS 动态加载 -->
+    <img src="test/IMG_1999.jpg" alt="养生指南图片">
 </div>
-
-<script>
-// JSON 数据（可以放在 GitHub Pages 上的 data.json 文件，示例写死在这里）
-const data = [
-    {
-        "title": "李小龙养生指南",
-        "image": "test/IMG_1999.jpg"
-    }
-];
-
-// 动态加载图片和标题
-const container = document.getElementById('content');
-
-data.forEach(item => {
-    const h3 = document.createElement('h3');
-    h3.textContent = item.title;
-    const img = document.createElement('img');
-    // 加版本号确保图片更新后自动刷新
-    img.src = item.image + "?v=" + new Date().getTime();
-    container.appendChild(h3);
-    container.appendChild(img);
-});
-</script>
 
 </body>
 </html>
