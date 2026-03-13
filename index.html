@@ -6,36 +6,39 @@
 <title>中医养生</title>
 
 <style>
-
 body{
-font-family: Arial;
-background:#f4f4f4;
-text-align:center;
-padding:40px;
+    font-family: Arial;
+    background:#f4f4f4;
+    text-align:center;
+    padding:40px;
 }
 
 h1{
-color:#333;
+    color:#333;
 }
 
 .card{
-background:white;
-padding:30px;
-margin:auto;
-width:400px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.1);
+    background:white;
+    padding:30px;
+    margin:auto;
+    width:400px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
 }
 
 button{
-background:#007bff;
-color:white;
-border:none;
-padding:10px 20px;
-border-radius:5px;
-cursor:pointer;
+    background:#007bff;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:5px;
+    cursor:pointer;
 }
 
+iframe{
+    border: none;
+    margin-top: 20px;
+}
 </style>
 
 </head>
@@ -43,17 +46,17 @@ cursor:pointer;
 <body>
 
 <div class="card">
-
-<h1>我们一起锻炼吧</h1>
-
-<button>联系我</button>
-
+    <h1>我们一起锻炼吧</h1>
+    <button>联系我</button>
 </div>
 
 <h2>养生指南 PDF</h2>
-<iframe src="pdf/Test-李小龙.pdf" width="600" height="800"></iframe>
 
-  
+<!-- 使用 Google Docs Viewer 完整展示 PDF -->
+<iframe 
+    src="https://docs.google.com/gview?url=https://你的用户名.github.io/仓库名/pdf/Test-李小龙.pdf&embedded=true" 
+    width="800" height="1000">
+</iframe>
+
 </body>
-
 </html>
