@@ -6,6 +6,7 @@
 <title>中医养生</title>
 
 <style>
+
 body{
     font-family: Arial;
     background:#f4f4f4;
@@ -17,39 +18,61 @@ h1{
     color:#333;
 }
 
+/* 卡片 */
 .card{
     background:white;
     padding:30px;
     margin:auto;
-    width:400px;
+    width:420px;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* 时钟 */
+.clock{
+    font-size:50px;
+    font-weight:bold;
+    margin-top:10px;
+    color:#2c3e50;
+}
+
+/* 问候 */
+.greeting{
+    font-size:22px;
+    color:#666;
+    margin-bottom:10px;
+}
+
+/* 按钮 */
+button{
+    margin-top:20px;
+    background:#4CAF50;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#45a049;
+}
+
+/* 图片 */
+img{
+    max-width:90%;
+    height:auto;
+    margin-top:30px;
     border-radius:10px;
     box-shadow:0 0 10px rgba(0,0,0,0.1);
 }
 
-button{
-    background:#007bff;
-    color:white;
-    border:none;
-    padding:10px 20px;
-    border-radius:5px;
-    cursor:pointer;
-}
-
-img{
-    max-width: 90%;
-    height: auto;
-    margin-top: 20px;
-    border-radius: 10px;
-    box-shadow:0 0 10px rgba(0,0,0,0.1);
-    display:block;
-    margin-left:auto;
-    margin-right:auto;
-}
-
 h2{
-    margin-top:40px;
+    margin-top:50px;
     color:#555;
 }
+
 </style>
 
 </head>
@@ -57,15 +80,71 @@ h2{
 <body>
 
 <div class="card">
+
+    <div class="greeting" id="greeting">
+        你好
+    </div>
+
+    <div class="clock" id="clock">
+        00:00:00
+    </div>
+
     <h1>我们一起锻炼吧</h1>
-    <button>我们直接锻炼吧</button>
+
+    <button onclick="startExercise()">
+        开始养生锻炼
+    </button>
+
 </div>
 
 <h2>养生指南图片</h2>
 
-<div id="content">
-    <img src="IMG_1999.jpg" alt="养生指南图片">
-</div>
+<img src="IMG_1999.jpg" alt="养生指南图片">
+
+<script>
+
+/* 时钟 */
+function updateClock(){
+
+    const now = new Date()
+
+    let h = now.getHours().toString().padStart(2,'0')
+    let m = now.getMinutes().toString().padStart(2,'0')
+    let s = now.getSeconds().toString().padStart(2,'0')
+
+    document.getElementById("clock").innerText =
+        h + ":" + m + ":" + s
+
+    updateGreeting(now.getHours())
+}
+
+/* 问候 */
+function updateGreeting(hour){
+
+    let text = "你好"
+
+    if(hour < 12){
+        text = "早安 ☀️"
+    }
+    else if(hour < 18){
+        text = "午安 🌿"
+    }
+    else{
+        text = "晚上好 🌙"
+    }
+
+    document.getElementById("greeting").innerText = text
+}
+
+/* 按钮 */
+function startExercise(){
+    alert("开始今天的养生锻炼吧 💪")
+}
+
+setInterval(updateClock,1000)
+updateClock()
+
+</script>
 
 </body>
 </html>
