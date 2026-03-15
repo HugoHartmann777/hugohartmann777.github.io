@@ -9,23 +9,19 @@
 
 body{
     font-family: Arial;
-    background:#f4f4f4;
+    background: linear-gradient(135deg,#a8e6cf,#dcedc1);
     text-align:center;
     padding:40px;
 }
 
-h1{
-    color:#333;
-}
-
-/* 卡片 */
+/* 主卡片 */
 .card{
     background:white;
-    padding:30px;
+    padding:35px;
     margin:auto;
     width:420px;
-    border-radius:12px;
-    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    border-radius:16px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
 }
 
 /* 时钟 */
@@ -43,6 +39,11 @@ h1{
     margin-bottom:10px;
 }
 
+/* 标题 */
+h1{
+    color:#333;
+}
+
 /* 按钮 */
 button{
     margin-top:20px;
@@ -50,27 +51,60 @@ button{
     color:white;
     border:none;
     padding:12px 25px;
-    border-radius:6px;
+    border-radius:8px;
     cursor:pointer;
     font-size:16px;
+    transition:0.2s;
 }
 
 button:hover{
     background:#45a049;
+    transform:scale(1.05);
+}
+
+/* 中医表格 */
+
+.table-card{
+    margin-top:40px;
+    background:white;
+    width:600px;
+    margin-left:auto;
+    margin-right:auto;
+    padding:20px;
+    border-radius:16px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#4CAF50;
+    color:white;
+    padding:10px;
+}
+
+td{
+    padding:10px;
+    border-bottom:1px solid #eee;
+}
+
+/* 当前时辰高亮 */
+
+.active{
+    background:#ffeaa7;
+    font-weight:bold;
 }
 
 /* 图片 */
-img{
-    max-width:90%;
-    height:auto;
-    margin-top:30px;
-    border-radius:10px;
-    box-shadow:0 0 10px rgba(0,0,0,0.1);
-}
 
-h2{
-    margin-top:50px;
-    color:#555;
+img{
+    max-width:600px;
+    margin-top:30px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
 }
 
 </style>
@@ -81,65 +115,193 @@ h2{
 
 <div class="card">
 
-    <div class="greeting" id="greeting">
-        你好
-    </div>
+<div class="greeting" id="greeting">
+你好
+</div>
 
-    <div class="clock" id="clock">
-        00:00:00
-    </div>
+<div class="clock" id="clock">
+00:00:00
+</div>
 
-    <h1>我们一起锻炼吧</h1>
+<h1>🌿 中医养生助手</h1>
 
-    <button onclick="startExercise()">
-        开始养生锻炼
-    </button>
+<button onclick="startExercise()">
+开始养生锻炼
+</button>
+
+</div>
+
+
+<div class="table-card">
+
+<h2>中医十二时辰养生表</h2>
+
+<table id="tcmTable">
+
+<tr>
+<th>时辰</th>
+<th>时间</th>
+<th>经络</th>
+</tr>
+
+<tr data-hour="23">
+<td>子时</td>
+<td>23:00-01:00</td>
+<td>胆经</td>
+</tr>
+
+<tr data-hour="1">
+<td>丑时</td>
+<td>01:00-03:00</td>
+<td>肝经</td>
+</tr>
+
+<tr data-hour="3">
+<td>寅时</td>
+<td>03:00-05:00</td>
+<td>肺经</td>
+</tr>
+
+<tr data-hour="5">
+<td>卯时</td>
+<td>05:00-07:00</td>
+<td>大肠经</td>
+</tr>
+
+<tr data-hour="7">
+<td>辰时</td>
+<td>07:00-09:00</td>
+<td>胃经</td>
+</tr>
+
+<tr data-hour="9">
+<td>巳时</td>
+<td>09:00-11:00</td>
+<td>脾经</td>
+</tr>
+
+<tr data-hour="11">
+<td>午时</td>
+<td>11:00-13:00</td>
+<td>心经</td>
+</tr>
+
+<tr data-hour="13">
+<td>未时</td>
+<td>13:00-15:00</td>
+<td>小肠经</td>
+</tr>
+
+<tr data-hour="15">
+<td>申时</td>
+<td>15:00-17:00</td>
+<td>膀胱经</td>
+</tr>
+
+<tr data-hour="17">
+<td>酉时</td>
+<td>17:00-19:00</td>
+<td>肾经</td>
+</tr>
+
+<tr data-hour="19">
+<td>戌时</td>
+<td>19:00-21:00</td>
+<td>心包</td>
+</tr>
+
+<tr data-hour="21">
+<td>亥时</td>
+<td>21:00-23:00</td>
+<td>三焦</td>
+</tr>
+
+</table>
 
 </div>
 
 <h2>养生指南图片</h2>
 
-<img src="IMG_1999.jpg" alt="养生指南图片">
+<img src="IMG_1999.jpg">
 
 <script>
 
 /* 时钟 */
+
 function updateClock(){
 
-    const now = new Date()
+const now = new Date()
 
-    let h = now.getHours().toString().padStart(2,'0')
-    let m = now.getMinutes().toString().padStart(2,'0')
-    let s = now.getSeconds().toString().padStart(2,'0')
+let h = now.getHours().toString().padStart(2,'0')
+let m = now.getMinutes().toString().padStart(2,'0')
+let s = now.getSeconds().toString().padStart(2,'0')
 
-    document.getElementById("clock").innerText =
-        h + ":" + m + ":" + s
+document.getElementById("clock").innerText =
+h + ":" + m + ":" + s
 
-    updateGreeting(now.getHours())
+updateGreeting(now.getHours())
+
+highlightTime(now.getHours())
 }
+
 
 /* 问候 */
+
 function updateGreeting(hour){
 
-    let text = "你好"
+let text = "你好"
 
-    if(hour < 12){
-        text = "早安 ☀️"
-    }
-    else if(hour < 18){
-        text = "午安 🌿"
-    }
-    else{
-        text = "晚上好 🌙"
-    }
-
-    document.getElementById("greeting").innerText = text
+if(hour < 12){
+text = "早安 ☀️"
 }
+else if(hour < 18){
+text = "午安 🌿"
+}
+else{
+text = "晚上好 🌙"
+}
+
+document.getElementById("greeting").innerText = text
+}
+
+
+/* 高亮当前时辰 */
+
+function highlightTime(hour){
+
+const rows = document.querySelectorAll("#tcmTable tr")
+
+rows.forEach(row=>{
+row.classList.remove("active")
+
+let start = row.getAttribute("data-hour")
+
+if(start !== null){
+
+start = parseInt(start)
+
+let end = (start + 2) % 24
+
+if(
+(start <= hour && hour < start + 2) ||
+(start === 23 && (hour >= 23 || hour < 1))
+){
+row.classList.add("active")
+}
+
+}
+
+})
+
+}
+
 
 /* 按钮 */
+
 function startExercise(){
-    alert("开始今天的养生锻炼吧 💪")
+alert("开始今天的养生锻炼吧 💪")
 }
+
 
 setInterval(updateClock,1000)
 updateClock()
